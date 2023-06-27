@@ -1,0 +1,24 @@
+name: Mirror Repository
+
+on:
+  schedule:
+    - cron: '*/30 * * * *' 
+
+jobs:
+  mirror:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        with:
+          repository: PixelOS-AOSP/official_devices
+          path: 'src'
+
+      - name: Mirror to GitLab
+        run: |
+          git config --global user.email "pixelos.pixelish@gmail.com"
+          git config --global user.name "PixelOS-Bot"
+          cd src
+          git remote set-url --push origin "https://geek0609::${{ secrets.GITLAB_PASSWORD }}@gitlab.com/PixelOS-Devices/official-devices.git"
+          git push --mirror origin
