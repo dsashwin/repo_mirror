@@ -11,10 +11,11 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           repository: PixelOS-AOSP/official_devices
           path: 'src'
+          fetch-depth: '0'
 
       - name: Mirror to GitLab
         run: |
