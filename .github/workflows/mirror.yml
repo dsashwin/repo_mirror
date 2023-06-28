@@ -2,6 +2,7 @@ name: Mirror Repository
 
 on:
   workflow_dispatch:
+  push:
   schedule:
     - cron: '*/30 * * * *' 
 
@@ -22,5 +23,6 @@ jobs:
           git config --global user.email "pixelos.pixelish@gmail.com"
           git config --global user.name "PixelOS-Bot"
           cd src
-          git remote set-url --push origin "https://pixelos-pixelish-bot:${{ secrets.GITLAB_PASSWORD }}@gitlab.com/PixelOS-Devices/official-devices.git"
-          git push --mirror origin -f
+          git remote add newOrigin "https://pixelos-pixelish-bot:${{ secrets.GITLAB_PASSWORD }}@gitlab.com/PixelOS-Devices/official-devices.git"
+          # git push --mirror newOrigin -f
+          git push newOrigin refs/remotes/origin/*:refs/heads/*
