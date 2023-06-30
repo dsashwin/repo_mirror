@@ -25,4 +25,4 @@ jobs:
           cd src
           git remote add newOrigin "https://pixelos-pixelish-bot:${{ secrets.GITLAB_PASSWORD }}@gitlab.com/PixelOS-Devices/official-devices.git"
           # git push --mirror newOrigin -f
-          git push newOrigin refs/remotes/origin/*:refs/heads/*
+          git push -f newOrigin refs/remotes/origin/*:refs/heads/*
